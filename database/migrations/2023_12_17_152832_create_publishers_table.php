@@ -16,6 +16,24 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        // Inserir registros padrão
+        $data = [
+            ['name' => 'Saraiva'],
+            ['name' => 'Grupo Editorial Nacional'],
+            ['name' => 'Revista dos Tribunais'],
+            ['name' => 'Fórum'],
+            ['name' => 'Lumen Juris'],
+            ['name' => 'Juruá'],
+            ['name' => 'Malheiros Editores'],
+            ['name' => 'Del Rey'],
+            ['name' => 'Rideel'],
+            ['name' => 'Lex Magister'],
+            ['name' => 'Edijur'],
+            ['name' => 'Quartier Latin'],
+        ];
+
+        DB::table('publishers')->insert($data);
     }
 
     /**
