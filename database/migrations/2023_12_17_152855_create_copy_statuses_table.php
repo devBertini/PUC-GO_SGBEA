@@ -16,6 +16,17 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        // Inserir registros padrão
+        $data = [
+            ['description' => 'Disponível'],
+            ['description' => 'Emprestado'],
+            ['description' => 'Reservado'],
+            ['description' => 'Perdido'],
+            ['description' => 'Com Defeito']
+        ];
+
+        DB::table('law_areas')->insert($data);
     }
 
     /**

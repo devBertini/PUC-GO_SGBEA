@@ -16,6 +16,15 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        // Inserir registros padrão
+        $data = [
+            ['description' => 'Em Andamento'],
+            ['description' => 'Concluído'],
+            ['description' => 'Atrasado']
+        ];
+
+        DB::table('loan_statuses')->insert($data);
     }
 
     /**

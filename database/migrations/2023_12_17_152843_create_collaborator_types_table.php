@@ -16,6 +16,16 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        // Inserir registros padrão
+        $data = [
+            ['description' => 'Advogado'],
+            ['description' => 'Funcionário'],
+            ['description' => 'Recepcionista'],
+            ['description' => 'Estagiário']
+        ];
+
+        DB::table('collaborator_types')->insert($data);
     }
 
     /**

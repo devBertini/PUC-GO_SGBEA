@@ -16,6 +16,22 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        // Inserir registros padrão
+        $data = [
+            ['description' => 'Civil'],
+            ['description' => 'Ambiental'],
+            ['description' => 'Empresarial'],
+            ['description' => 'Tecnologia da Informação'],
+            ['description' => 'Consumidor'],
+            ['description' => 'Contratual'],
+            ['description' => 'Penal'],
+            ['description' => 'Trabalhista'],
+            ['description' => 'Tributário'],
+            ['description' => 'Digital'],
+        ];
+
+        DB::table('law_areas')->insert($data);
     }
 
     /**

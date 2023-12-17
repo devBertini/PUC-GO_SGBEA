@@ -16,6 +16,15 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        // Inserir registros padrão
+        $data = [
+            ['description' => 'Ativa'],
+            ['description' => 'Expirada'],
+            ['description' => 'Cancelada']
+        ];
+
+        DB::table('reservation_statuses')->insert($data);
     }
 
     /**
