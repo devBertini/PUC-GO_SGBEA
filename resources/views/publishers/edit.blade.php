@@ -10,6 +10,7 @@
             <label for="name">Nome da Editora:</label>
             <input type="text" class="form-control" name="name" id="name" value="{{ $publisher->name }}" required>
         </div>
+        <a href="{{ route('publishers.index') }}" class="btn btn-primary">Voltar para Editoras</a>
         <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>
 </div>

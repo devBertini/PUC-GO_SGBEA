@@ -9,6 +9,7 @@
             <label for="description">Descrição:</label>
             <input type="text" class="form-control" name="description" id="description" required>
         </div>
+        <a href="{{ route('law_areas.index') }}" class="btn btn-secondary">Cancelar</a>
         <button type="submit" class="btn btn-success">Salvar</button>
     </form>
 </div>

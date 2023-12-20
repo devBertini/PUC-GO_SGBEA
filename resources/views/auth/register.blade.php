@@ -63,6 +63,10 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
+                                <a class="btn btn-primary" href="{{ route('login') }}">
+                                    {{ __('Voltar ao Login') }}
+                                </a>
+
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrar') }}
                                 </button>

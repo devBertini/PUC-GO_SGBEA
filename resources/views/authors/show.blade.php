@@ -1,13 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Detalhes do Autor</h1>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{ $author->name }}</h5>
-            <!-- Outras informações do autor -->
-        </div>
+    <div class="container">
+        <h1>{{ $author->name }}</h1>
+        <a href="{{ route('authors.index') }}" class="btn btn-primary">Voltar para Autores</a>
+        <a href="{{ route('authors.edit', $author->id) }}" class="btn btn-warning">Editar</a>
     </div>
-</div>
 @endsection

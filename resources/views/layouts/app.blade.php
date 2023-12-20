@@ -1,107 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Outros metadados e links CSS, como Bootstrap, podem ser adicionados aqui -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Sistema de Biblioteca</title>
     <style>
+        /* Estilo para o footer */
+        .footer {
+            width: 100%;
+            background-color: #343a40; /* Cor de fundo mais escura */
+            color: white; /* Cor do texto branco */
+        }
+
+        .footer p {
+            margin: 0; /* Remove a margem padrão do parágrafo */
+        }
+
         body {
-            background-color: #181818;
-            color: #fff;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 10% auto;
-            
-        }
-        h1 {
-            font-size: 24px;
-        }
-        .bg {
-            background: rgba(16, 16, 16, 1);
-            height: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        .login-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            padding: 20px;
-            background: rgba(58, 58, 58, 0.8);
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
-        }
-        .login-form {
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
-        .login-form input[type="email"], .login-form input[type="password"] {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+
+        main {
+            flex: 1;
         }
-        .login-form button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ff4b5a;
+
+        /* Ajustes para centralizar os itens da navegação */
+        .navbar-nav.mx-auto {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        /* Ajustes para o dropdown do usuário */
+        .header .dropdown-toggle {
             color: white;
-            cursor: pointer;
-        }
-        .login-form button:hover {
-            background-color: #ff2f43;
-        }
-        .login-form .create-account {
-            background-color: transparent;
-            color: #f8f8f8;
-            text-align: center;
-            text-decoration: underline;
-            margin-top: 15px;
-            padding: 5px;
+            text-decoration: none;
+            padding: 0.5rem 1rem; /* Espaçamento para tornar mais fácil clicar */
         }
 
-        /* Estilo para o footer */
-        footer.footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #007bff; /* Cor de fundo azul */
-            color: white; /* Cor do texto branco */
-            text-align: center;
+        .header .dropdown-menu {
+            right: 0; /* Alinha o dropdown à direita */
         }
-
-            /* Estilize o fundo azul */
-            footer.footer .bg-dark {
-                background-color: #007bff; /* Cor de fundo azul */
-            }
-
-            /* Estilize o texto branco */
-            footer.footer .text-white {
-                color: white; /* Cor do texto branco */
-            }
-
-            /* Estilize o padding do footer */
-            footer.footer .py-2 {
-            }
-        /* FIM Estilo para o footer */
     </style>
 </head>
 <body>
+    @include('partials.header')
+
     @auth
         @include('partials.navbar')
     @endauth
+
     <main class="py-4">
         @yield('content')
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     </main>
+
     @include('partials.footer')
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

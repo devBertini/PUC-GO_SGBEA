@@ -27,7 +27,7 @@
                     <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="btn btn-danger">Excluir</button>
+                        <button type="submit" class="btn btn-danger">Remover</button>
                     </form>
                 </td>
             </tr>

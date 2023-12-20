@@ -53,6 +53,12 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-primary" href="{{ route('register') }}">
+                                        {{ __('Registrar') }}
+                                    </a>
+                                @endif
+                                
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
