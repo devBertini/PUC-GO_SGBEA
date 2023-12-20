@@ -22,7 +22,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        $authors = Author::all();
+        return view('authors.create', compact('authors'));
     }
 
     /**
@@ -51,7 +52,9 @@ class AuthorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $author = Author::findOrFail($id);
+
+        return view('authors.edit', compact('author'));
     }
 
     /**
@@ -73,6 +76,13 @@ class AuthorController extends Controller
     public function destroy(string $id)
     {
         $author = Author::findOrFail($id);
+
+        // Verificar se existem livros vinculados a esta editora
+        if ($author->books->count() > 0) {
+            return redirect()->route('authors.index')
+                ->with('error', 'Não é possível excluir o autor porque há livro(s) vinculado(s) a ele(a). Remova o(s) livro(s) primeiro.');
+        }
+
         $author->delete();
         return redirect()->route('authors.index');
     }

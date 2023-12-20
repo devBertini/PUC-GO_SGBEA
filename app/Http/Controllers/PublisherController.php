@@ -22,7 +22,8 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        //
+        $publishers = Publisher::all();
+        return view('publishers.create', compact('publishers'));
     }
 
     /**
@@ -33,7 +34,9 @@ class PublisherController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
         ]);
+
         $publisher = Publisher::create($validatedData);
+
         return redirect()->route('publishers.show', $publisher);
     }
 
@@ -51,7 +54,9 @@ class PublisherController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $publisher = Publisher::findOrFail($id);
+
+        return view('publishers.edit', compact('publisher'));
     }
 
     /**
@@ -60,10 +65,13 @@ class PublisherController extends Controller
     public function update(Request $request, string $id)
     {
         $publisher = Publisher::findOrFail($id);
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
         ]);
+
         $publisher->update($validatedData);
+
         return redirect()->route('publishers.show', $publisher);
     }
 
@@ -73,6 +81,13 @@ class PublisherController extends Controller
     public function destroy(string $id)
     {
         $publisher = Publisher::findOrFail($id);
+
+        // Verificar se existem livros vinculados a esta editora
+        if ($publisher->books->count() > 0) {
+            return redirect()->route('publishers.index')
+                ->with('error', 'Não é possível excluir a editora porque há livro(s) vinculado(s) a ela. Remova o(s) livro(s) primeiro.');
+        }
+
         $publisher->delete();
         return redirect()->route('publishers.index');
     }

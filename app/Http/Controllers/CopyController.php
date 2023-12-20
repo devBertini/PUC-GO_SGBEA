@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\CopyStatus;
 use App\Models\Copy;
+use App\Models\Book;
 
 class CopyController extends Controller
 {
@@ -22,7 +24,10 @@ class CopyController extends Controller
      */
     public function create()
     {
-        //
+        $copies = Copy::all();
+        $books = Book::all();
+        $copyStatuses = CopyStatus::all();
+        return view('copies.create', compact('copies', 'books', 'copyStatuses'));
     }
 
     /**
@@ -53,7 +58,10 @@ class CopyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $copy = Copy::findOrFail($id);
+        $books = Book::all();
+        $copyStatuses = CopyStatus::all();
+        return view('copies.edit', compact('copy', 'books', 'copyStatuses'));
     }
 
     /**

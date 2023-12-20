@@ -22,7 +22,8 @@ class LawAreaController extends Controller
      */
     public function create()
     {
-        //
+        $lawAreas = LawArea::all();
+        return view('law_areas.create', compact('lawAreas'));
     }
 
     /**
@@ -51,7 +52,9 @@ class LawAreaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $lawArea = LawArea::findOrFail($id);
+
+        return view('law_areas.edit', compact('lawArea'));
     }
 
     /**
@@ -73,6 +76,13 @@ class LawAreaController extends Controller
     public function destroy(string $id)
     {
         $lawArea = LawArea::findOrFail($id);
+
+        // Verificar se existem livros vinculados a esta editora
+        if ($lawArea->books->count() > 0) {
+            return redirect()->route('law_areas.index')
+                ->with('error', 'Não é possível excluir a Área de Advocacia porque há livro(s) vinculado(s) a ele(a). Remova o(s) livro(s) primeiro.');
+        }
+
         $lawArea->delete();
         return redirect()->route('law_areas.index');
     }
