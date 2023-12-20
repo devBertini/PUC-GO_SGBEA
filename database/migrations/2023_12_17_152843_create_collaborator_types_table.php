@@ -19,10 +19,10 @@ return new class extends Migration
 
         // Inserir registros padrão
         $data = [
-            ['description' => 'Advogado'],
             ['description' => 'Funcionário'],
             ['description' => 'Recepcionista'],
-            ['description' => 'Estagiário']
+            ['description' => 'Estagiário'],
+            ['description' => 'Advogado']
         ];
 
         DB::table('collaborator_types')->insert($data);

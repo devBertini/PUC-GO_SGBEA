@@ -23,10 +23,11 @@ return new class extends Migration
             ['description' => 'Emprestado'],
             ['description' => 'Reservado'],
             ['description' => 'Perdido'],
-            ['description' => 'Com Defeito']
+            ['description' => 'Com Defeito'],
+            ['description' => 'Obsoleto']
         ];
 
-        DB::table('law_areas')->insert($data);
+        DB::table('copy_statuses')->insert($data);
     }
 
     /**
